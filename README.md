@@ -28,7 +28,7 @@ Choose an X provider:
 | Provider | Key | Coverage / status |
 |---|---|---|
 | TwitterAPI.io | `TWITTERAPI_KEY` | Dedicated original-post search, Latest order, cursor paging; adapter implemented, requires credential for live validation |
-| X official | `X_BEARER_TOKEN` | Recent Search; last seven days, author expansion and timestamps; adapter implemented, requires credential for live validation |
+| X official | `X_BEARER_TOKEN` | Live validated September 22: Recent Search, author expansion, timestamps and long-post text; recent seven-day coverage |
 | Exa through BlockRun | Existing BlockRun key | Web-index fallback only; may return zero X posts. Not a substitute for a dedicated X feed |
 | Import | No search key | JSON from an existing supplier/export; explicitly labeled as imported evidence |
 

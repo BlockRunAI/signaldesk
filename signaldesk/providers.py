@@ -100,7 +100,7 @@ def search(api,provider,company,days=30,max_posts=60,queries=None):
                 got=r['tweets']
                 cursor=r.get('next_cursor') if r.get('has_next_page') else None
             elif provider=='x':
-                params={'query':query+' -is:retweet','max_results':min(100,max(10,max_posts-len(rows))),'tweet.fields':'created_at,author_id','expansions':'author_id','user.fields':'username','start_time':since+'T00:00:00Z'}
+                params={'query':query+' -is:retweet','max_results':min(100,max(10,max_posts-len(rows))),'tweet.fields':'created_at,author_id,note_tweet','expansions':'author_id','user.fields':'username','start_time':since+'T00:00:00Z'}
                 if cursor:params['next_token']=cursor
                 r=api.call('x','/2/tweets/search/recent?'+urllib.parse.urlencode(params))
                 if r.get('errors'):
@@ -108,7 +108,13 @@ def search(api,provider,company,days=30,max_posts=60,queries=None):
                 if 'data' not in r and r.get('meta',{}).get('result_count')!=0:
                     raise ValueError('X response has neither posts nor an explicit empty result')
                 users={u['id']:u['username'] for u in r.get('includes',{}).get('users',[])}
-                got=[{**p,'url':f"https://x.com/{users.get(p.get('author_id'),'i')}/status/{p['id']}"} for p in r.get('data',[]) if p.get('author_id') in users]
+                got=[]
+                for p in r.get('data',[]):
+                    if p.get('author_id') not in users:continue
+                    # Long posts expose full text separately from the truncated preview.
+                    note=p.get('note_tweet') or p.get('note_post') or {}
+                    got.append({**p,'text':note.get('text') or p.get('text'),
+                                'url':f"https://x.com/{users[p['author_id']]}/status/{p['id']}"})
                 cursor=r.get('meta',{}).get('next_token')
             elif provider=='exa':
                 r=api.call('blockrun','/v1/exa/search',{'query':query,'includeDomains':['x.com','twitter.com'],'numResults':min(30,max_posts),'startPublishedDate':since+'T00:00:00Z','contents':{'text':True}})

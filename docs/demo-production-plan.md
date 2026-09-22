@@ -1,6 +1,7 @@
 # SignalDesk demo: data sourcing and final short video
 
-Updated: 2026-09-22. Production plan; no finished video or live lead dataset yet.
+Updated: 2026-09-22. Production plan; official X retrieval and classification now
+work with real posts. No finished video or validated priority-lead dataset yet.
 
 ## Reference demo
 
@@ -15,9 +16,9 @@ The tutorial supplies prompts and reports TikHub as the TikTok search/data sourc
 
 ## Data acquisition
 
-Use a dedicated provider for original X posts. TwitterAPI.io is the recommended
-first integration test because the adapter already exists and exposes keyword
-search and cursor paging. Its public rate on the date above is $0.15/1K tweets,
+Use the official X provider, now configured and live validated, for this demo.
+TwitterAPI.io remains an alternative adapter with keyword search and cursor
+paging. Its public rate on the date above is $0.15/1K tweets,
 with per-call minimums. 100 returned tweets correspond to $0.015 at the item rate,
 not a quote for the whole workflow or a guarantee about unique usable posts.
 X official is the alternative: $0.005/read post, about $0.50 for 100 post resources;

@@ -70,6 +70,20 @@ class CoreTests(unittest.TestCase):
     def test_authenticated_redirects_are_blocked(self):
         from signaldesk.providers import NoRedirect
         self.assertIsNone(NoRedirect().redirect_request(None,None,None,None,None,None))
+    def test_x_long_post_uses_full_text_and_regular_post_keeps_text(self):
+        class SearchAPI:
+            def call(self,service,path):
+                self.path=path
+                return {'data':[
+                    {'id':'1100000000','author_id':'123','text':'Preview...',
+                     'note_tweet':{'text':'Full text: I need travel data, not a local phone number.'}},
+                    {'id':'1100000001','author_id':'123','text':'Ordinary post'}],
+                    'includes':{'users':[{'id':'123','username':'test_fixture'}]}}
+        api=SearchAPI();rows,_=search(api,'x',{'keywords':['esim']},max_posts=10)
+        self.assertIn('note_tweet',api.path)
+        self.assertEqual(rows[0]['text'],'Full text: I need travel data, not a local phone number.')
+        self.assertEqual(rows[1]['text'],'Ordinary post')
+        self.assertEqual(rows[0]['url'],'https://x.com/test_fixture/status/1100000000')
     def test_provider_error_is_not_an_empty_search(self):
         class ErrorAPI:
             def call(self,*a,**k):return {'status':'error','message':'out of credits'}

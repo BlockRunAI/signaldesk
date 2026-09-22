@@ -16,10 +16,34 @@
 ## Dedicated X provider
 
 The repository supports TwitterAPI.io and the official X Recent Search API.
-No dedicated credential was available during initial setup. Their adapters are
-tested offline against documented shapes; live retrieval remains to be validated
-with an actual authorized key. The app fails before any paid company calls when
-the selected search credential is missing.
+The official X adapter was live validated after the user configured and funded
+their developer account. TwitterAPI.io remains unverified against a live account.
+The app fails before any paid company calls when the selected search credential
+is missing.
+
+### Official X live runs
+
+On September 22, three Airalo/eSIM queries returned 20, 40 and 29 valid posts
+respectively. These are 89 records across batches (88 unique post IDs), not 89
+customers. Company-site extraction and official Jev classification completed in
+all three runs. Jev wall times were 0.836 s, 1.083 s and 0.791 s respectively.
+The second and third runs requested long-post content (`note_tweet`), avoiding
+classification of truncated previews. A regression test covers that behavior.
+
+No post met the existing priority-review rule. Manual inspection found promotions,
+carrier support requests, phone-hardware requests and some travel-related needs
+requiring further research. Thresholds were not relaxed. Consequently the live
+positive draft path and a successful customer-discovery marketing example remain
+unverified; the synthetic contract check below is separate evidence only.
+
+After these calls, the X console showed $0.45 current spend and $4.55 remaining
+from the initial $5 credit purchase. This is an account-level UI observation,
+rounded to cents, not per-run API billing metadata or a total workflow cost.
+Three Exa page reads reported $0.006 combined; Jev costs are estimates and chat
+costs still lack the header consumed by this app. Do not advertise a full cost.
+
+The local server now loads its ignored, owner-readable `.env` with X configured.
+No credentials or collected post datasets are committed to this repository.
 
 ## Acceptance criteria for a publishable demo
 
@@ -67,7 +91,7 @@ customers, and must never be included in a marketing lead count.
 
 ## Local verification
 
-- 13 offline tests cover normalization, stale/future data, deduplication, paging,
+- 14 offline tests cover normalization, stale/future data, deduplication, paging,
   provider errors, malformed model answers, source-quote validation, exclusions,
   missing credentials, CSV formula handling and redirect behavior.
 - Python compilation and JavaScript syntax checks pass.
