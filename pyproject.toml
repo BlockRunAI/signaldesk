@@ -1,0 +1,9 @@
+[project]
+name = "signaldesk"
+version = "0.1.0"
+description = "Find buying intent in public X posts with Jev and BlockRun."
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+signaldesk = "signaldesk.__main__:main"
