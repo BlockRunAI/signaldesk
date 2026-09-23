@@ -1,15 +1,15 @@
 # SignalDesk · English continuous workflow
 
-The current social demo: 24 seconds, 1920×1080, 60 fps, silent. Supersedes the
+The current social demo: 32 seconds, 1920×1080, 60 fps, with instrumental background music. Supersedes the
 three-scene Chinese first cut in `../signaldesk-forms`.
 
 Open `http://127.0.0.1:8787/demo` after `python3 -m signaldesk serve`.
-The browser player supports play/pause, replay, seeking and reduced-motion mode.
+The browser player supports play/pause, replay, seeking, soundtrack controls and reduced-motion mode.
 All source links point to actual public posts. Playback makes no provider calls.
 
 ```sh
 npm run check
-npm run render -- --fps 60 --quality delivery --output renders/signaldesk-english-flow.mp4
+npm run render -- --fps 60 --quality delivery --output renders/signaldesk-launch.mp4
 ```
 
 `index.html` is generated from the shared web replay assets. To rebuild after an
@@ -37,3 +37,5 @@ our own layout and animation using SignalDesk's real run data.
 GSAP 3.14.2 is vendored with its copyright/license header intact:
 https://gsap.com/standard-license . No runtime CDN is required by the demo page.
 The optional HyperFrames CLI is pinned to 0.8.62 for reproducible rendering.
+
+Opening: BlockRun × Jev → SignalDesk. Closing: bring your own X, TypeSafe Jev and BlockRun keys. The 24-second main sequence is retained between four-second brand bookends. See ../../THIRD_PARTY.md for music provenance.

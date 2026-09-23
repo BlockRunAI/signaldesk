@@ -130,9 +130,24 @@ customers, and must never be included in a marketing lead count.
 
 ## Local verification
 
-- 14 offline tests cover normalization, stale/future data, deduplication, paging,
+- 20 offline tests cover local credential storage, HTTP token/origin checks,
+  secret non-disclosure, normalization, stale/future data, deduplication, paging,
   provider errors, malformed model answers, source-quote validation, exclusions,
   missing credentials, CSV formula handling and redirect behavior.
 - Python compilation and JavaScript syntax checks pass.
 - Browser verification: startup, configured/missing credentials, real-run replay,
   exclusion filtering, source-link targets and visual layout.
+
+## Branded revision and onboarding
+
+The English page supports first-run credential setup (session-only or atomic
+0600 `.env` save), preserving blank fields and refusing changes during a run.
+Settings endpoints do not return secret values. Provider access is validated on
+live use; saving a key makes no paid call. Local HTTP tests cover CSRF token,
+Origin/Host restrictions and refusal to serve `.env`.
+
+The 32-second branded composition includes the approved 24-second workflow,
+a BlockRun × Jev opening, a bring-your-own-key closing, and original instrumental
+music. Browser playback was checked with an unmuted, advancing 32-second audio
+track. Video checks have no runtime/layout/contrast errors. The single-scene
+structure lint advisory is intentional.

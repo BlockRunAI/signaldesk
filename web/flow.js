@@ -25,5 +25,24 @@ tl.fromTo('.headline',{opacity:1,y:0},{opacity:0,y:-20,duration:.6},18);
 tl.fromTo('.title-summary',{opacity:0,y:20},{opacity:1,y:0,duration:.8},18.35);
 ['.phase-a','.phase-b','.phase-c','.phase-d'].forEach((s,i)=>{const t=[0,3,8.3,12.5][i];tl.fromTo(s,{opacity:0,y:7},{opacity:1,y:0,duration:.4},t);if(i<3)tl.to(s,{opacity:0,y:-7,duration:.3},[2.7,8,12.2][i]);});
 tl.fromTo('.journey-fill',{scaleX:0},{scaleX:1,duration:24,ease:'none'},0);
-window.__timelines=window.__timelines||{};window.__timelines['signaldesk-flow']=tl;
+// Keep the approved 24-second main animation intact; add brand bookends.
+tl.paused(false);
+const launch=gsap.timeline({paused:true,defaults:{ease:'power3.out'}});
+launch.add(tl,4);
+launch.fromTo('.main-stage',{opacity:0},{opacity:1,duration:.8},4);
+launch.fromTo('.launch-kicker',{opacity:0,y:14},{opacity:1,y:0,duration:.6},.1);
+launch.fromTo('.launch-partners',{opacity:0,y:24,scale:.94},{opacity:1,y:0,scale:1,duration:.9},.2);
+launch.to('.launch-partners',{y:-130,scale:.62,duration:.8,ease:'power2.inOut'},1.65);
+launch.to('.launch-kicker',{opacity:0,duration:.4},1.55);
+launch.fromTo('.launch-product',{opacity:0,y:30},{opacity:1,y:0,duration:.8},1.9);
+launch.fromTo('.launch-line',{opacity:0,y:15},{opacity:1,y:0,duration:.6},2.5);
+launch.to('.launch-cover',{opacity:0,y:-24,duration:.7,ease:'power2.inOut'},3.7);
+launch.set('.launch-cover',{pointerEvents:'none'},4.4);
+launch.to('.main-stage',{opacity:0,duration:.4},27.1);
+launch.fromTo('.closing-cover',{opacity:0,pointerEvents:'none'},{opacity:1,duration:.7},27.6);
+launch.set('.closing-cover',{pointerEvents:'auto'},28.3);
+launch.fromTo('.closing-inner',{y:22},{y:0,duration:.9},27.7);
+launch.to('.closing-inner',{opacity:1,duration:3.4,ease:'none'},28.6);
+window.__timelines=window.__timelines||{};window.__timelines['signaldesk-flow']=launch;
+
 })();

@@ -15,7 +15,7 @@ def main():
     r.add_argument('--posts',help='Path to JSON array for import mode');r.add_argument('--query',action='append')
     r.add_argument('--days',type=int,default=30);r.add_argument('--limit',type=int,default=60)
     args=p.parse_args();load_env(args.env)
-    if args.command=='serve':serve(args.port);return
+    if args.command=='serve':serve(args.port,Path(args.env).resolve());return
     options={'url':args.url,'brief':args.brief,'provider':args.provider,'queries':args.query,'days':args.days,'limit':args.limit}
     if args.posts:options['posts']=json.loads(Path(args.posts).read_text())
     try:

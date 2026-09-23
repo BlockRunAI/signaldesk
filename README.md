@@ -16,18 +16,20 @@ candidate for review. Jev took 1.691 s; the complete workflow took 8.08 s.
 [validation notes](docs/live-validation.md), and
 [English continuous video project](videos/signaldesk-flow-en/README.md).
 
-Open [the animated workflow](http://127.0.0.1:8787/demo) for a 24-second,
-three-column replay with scrolling posts, Jev scores and an evidence-linked
-reply draft. The app UI is English. Replay never starts a paid run.
+Open [the animated workflow](http://127.0.0.1:8787/demo) for a 32-second,
+three-column replay with a BlockRun × Jev opening, scrolling posts, Jev scores, an evidence-linked
+reply draft, and instrumental background music. The app UI is English. Replay never starts a paid run.
 
 ## Run locally
 
 Python 3.11+, no third-party Python packages required.
 
 ```sh
-cp .env.example .env
-# Set your keys in .env, then:
+git clone https://github.com/BlockRunAI/signaldesk.git
+cd signaldesk
 python3 -m signaldesk serve
+# Open the page and choose Connect your APIs.
+# Or copy .env.example to .env and set keys there.
 # http://127.0.0.1:8787
 ```
 
@@ -49,6 +51,34 @@ The app reads keys from `.env` or an explicitly supplied local file:
 `python3 -m signaldesk --env /path/to/local.env serve`.
 Keys stay on the backend and are only sent to fixed provider origins, with HTTP
 redirects disabled. It never reads browser cookies or X account passwords.
+
+## First-run setup
+
+**No keys needed to watch:** open `/demo`, then click **Play with sound**.
+
+**For live discovery:** expand **Connect your APIs** on the home page and enter:
+
+| Credential | Used for | Where to obtain it |
+|---|---|---|
+| BlockRun API key | Website extraction and reply drafting | https://user.blockrun.ai |
+| TypeSafe Jev API key | Official Jev classification | https://typesafe.ai |
+| X API Bearer Token | Original public posts, recent seven days | https://console.x.com |
+| TwitterAPI.io key | Optional alternative X provider | https://twitterapi.io |
+
+Keep **Save locally in .env** unchecked for a session-only setup, or check it to
+persist in an owner-readable file (0600). Blank fields preserve existing keys;
+existing secrets are never sent back to the browser. Settings cannot change during
+a run. The server must remain local. Saving validates input and configuration;
+provider credentials/access are checked when a live request is made.
+
+The public BlockRun catalog currently distinguishes **OpenJev** from official
+**TypeSafe Jev**. This demo uses the latter directly and requires its separate
+key. The BlockRun × Jev opening describes this combined workflow, not a claim
+that official Jev is available through BlockRun's gateway.
+
+Start with a small live run. Search needs a funded provider account; replay is
+free of API calls. Provider failures appear as actionable errors with no automatic
+paid retry. Data and run history stay on this machine.
 
 ## Command line
 
@@ -126,3 +156,9 @@ policy. No deployment or social posting is part of this repository.
 - [X Recent Search](https://docs.x.com/x-api/posts/search/introduction)
 - [Exa Search](https://exa.ai/docs/reference/search)
 - [Live integration findings](docs/live-validation.md)
+
+## License and contributions
+
+SignalDesk's original code is MIT licensed. See [LICENSE](LICENSE),
+[third-party notices](THIRD_PARTY.md), and [contribution guide](CONTRIBUTING.md).
+Offline CI uses no API keys and performs no paid calls.

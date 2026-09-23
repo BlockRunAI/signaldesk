@@ -1,3 +1,11 @@
+# Branded launch revision · 32 seconds
+
+0–4s: BlockRun × Jev settles into the SignalDesk reveal.
+4–28s: Approved continuous workflow below, offset by four seconds.
+28–32s: Open-source project and bring-your-own-key closing card.
+
+Original instrumental via BlockRun, normalized to about -19 LUFS, gentle fade-in and three-second fade-out. No narration.
+
 # Continuous English workflow · 24 seconds
 
 One persistent scene, no slide cuts. 1920×1080, 60 fps, silent social playback.

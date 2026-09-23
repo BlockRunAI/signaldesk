@@ -48,9 +48,9 @@ Company facts come from the company website, not from a text model's memory.
 ## Current English video deliverable
 
 User revision: English for X, with a more fluid end-to-end workflow similar to
-the reference. The current cut is `videos/signaldesk-flow-en`: 24 seconds,
-1920×1080, 60 fps, silent. Local artifact:
-`videos/signaldesk-flow-en/renders/signaldesk-english-flow.mp4`.
+the reference. The current cut is `videos/signaldesk-flow-en`: 32 seconds,
+1920×1080, 60 fps, with instrumental background music. Local artifact:
+`videos/signaldesk-flow-en/renders/signaldesk-launch.mp4`.
 
 One persistent three-column canvas replaces the first cut's separate slides:
 rolling original-post excerpts → Jev API intent/fit/confidence → source evidence
@@ -68,3 +68,5 @@ a paced replay. It does not represent real-time API execution or a conversion.
 The editable video and browser page are generated from the same source files;
 see the current video README for build/render instructions. No social post or
 outreach was sent as part of this revision.
+
+Current review status: repository remains private at the owner's request until the branded video is approved. The MIT license and open-source onboarding are prepared; no public release has occurred.
