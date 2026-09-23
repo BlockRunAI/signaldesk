@@ -7,14 +7,15 @@ classification → evidence-linked opportunities and reply drafts. No messages a
 sent. Works with any business whose product facts and relevant public posts are
 available, not just AI companies.
 
+[Architecture](docs/architecture.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [MIT license](LICENSE)
+
 ## Selected real demo
 
 **Form builders: find someone asking for a Google Forms alternative.** A live
 Tally run returned 25 records, classified 23 unique posts, and selected one
 candidate for review. Jev took 1.691 s; the complete workflow took 8.08 s.
 [Original request](https://x.com/MisWiredKE/status/2101589197890977975),
-[validation notes](docs/live-validation.md), and
-[English continuous video project](videos/signaldesk-flow-en/README.md).
+[validation notes](docs/live-validation.md).
 
 Open [the animated workflow](http://127.0.0.1:8787/demo) for a 32-second,
 three-column replay with a BlockRun × Jev opening, scrolling posts, Jev scores, an evidence-linked
@@ -22,7 +23,8 @@ reply draft, and instrumental background music. The app UI is English. Replay ne
 
 ## Run locally
 
-Python 3.11+, no third-party Python packages required.
+Python 3.11+, no third-party Python packages required. Run from a source checkout;
+wheel installation and hosted multi-user deployment are not yet supported.
 
 ```sh
 git clone https://github.com/BlockRunAI/signaldesk.git
@@ -90,6 +92,31 @@ that official Jev is available through BlockRun's gateway.
 Start with a small live run. Search needs a funded provider account; replay is
 free of API calls. Provider failures appear as actionable errors with no automatic
 paid retry. Data and run history stay on this machine.
+
+## Use SignalDesk
+
+1. **Connect your APIs.** Choose BlockRun or an OpenAI-compatible text model,
+   connect official Jev, and select your X data provider. Saving a key makes no
+   paid call. The `/demo` walkthrough can be viewed without credentials.
+2. **Describe your product.** Enter its website and verified capabilities in
+   Product context. A context brief is required without optional BlockRun/Exa
+   website extraction. Include limitations so the model can reject poor matches.
+3. **Choose a search.** Use a small post limit to start. Official X Recent Search
+   covers the past seven days. Leave queries empty to generate them from your
+   product, or supply up to four explicit queries. Import JSON is also supported.
+4. **Find opportunities.** The live workflow extracts facts, collects posts,
+   removes duplicates, asks Jev about intent and fit, then prepares candidates.
+   Calls use your funded provider accounts; failures are not automatically retried.
+5. **Review the evidence.** Filter Priority, read the exact original post, check
+   the source link and unknowns, and review the generated draft. Scores are review
+   aids, not evidence of a customer or a sale. Nothing is sent automatically.
+6. **Save your work.** Export CSV or reopen your own saved run from Recent runs.
+   Run data stays locally in `runs/`. A fresh clone has no historical run files.
+
+The included `/demo` is a self-contained, clearly labeled replay using six
+attributed public excerpts. It illustrates the workflow; it does not populate
+live history or make API calls. This repository contains the application and
+its walkthrough, not the launch video's production/rendering toolchain.
 
 ## Command line
 

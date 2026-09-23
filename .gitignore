@@ -15,3 +15,9 @@ videos/*/.media/
 videos/*/capture/
 videos/*/snapshots/
 videos/*/renders/
+
+# Local launch-film production; not part of the application repository
+/videos/
+/scripts/build_flow_demo.py
+/docs/demo-production-plan.md
+/examples/demo-replay.json

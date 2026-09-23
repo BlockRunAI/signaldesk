@@ -8,7 +8,7 @@ from signaldesk.providers import API
 from signaldesk.model_config import model_route, validate_option
 from signaldesk.settings import update_settings
 from signaldesk.workflow import execute
-from test_workflow import FakeAPI, post, response
+from test_workflow import FakeAPI, post, response, STAMP
 
 CUSTOM={'CHAT_PROVIDER':'custom','LLM_API_KEY':'model-test-key','LLM_BASE_URL':'https://models.example/v1','LLM_MODEL':'test-model','TYPESAFE_API_KEY':'jev-test-key'}
 
@@ -21,6 +21,10 @@ class Reply:
     def read(self,limit):return json.dumps(self.body).encode()
 
 class ModelAPITests(unittest.TestCase):
+    def setUp(self):
+        clock=patch('signaldesk.core.now',return_value=STAMP)
+        clock.start();self.addCleanup(clock.stop)
+
     @patch.dict(os.environ,CUSTOM,clear=True)
     def test_full_custom_workflow_without_blockrun(self):
         api=API();requests=[]

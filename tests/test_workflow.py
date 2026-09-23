@@ -90,6 +90,10 @@ class CoreTests(unittest.TestCase):
         with self.assertRaises(ValueError):search(ErrorAPI(),'twitterapi',{'keywords':['esim']})
 
 class WorkflowTests(unittest.TestCase):
+    def setUp(self):
+        clock=patch('signaldesk.core.now',return_value=STAMP)
+        clock.start();self.addCleanup(clock.stop)
+
     def options(self):return {'url':'https://example.com','provider':'import','days':365,'posts':[post(),post(1,'Buy now! Limited discount on our travel eSIM.')],'limit':10}
     @patch.dict(os.environ,{'BLOCKRUN_API_KEY':'test','TYPESAFE_API_KEY':'test'})
     def test_full_workflow_keeps_quotes_drafts_audit_and_exclusions(self):

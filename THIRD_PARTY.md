@@ -5,12 +5,11 @@ relicense service APIs, brands, public posts, fonts or bundled libraries.
 
 - GSAP 3.14.2: copyright GreenSock, standard license at
   https://gsap.com/standard-license . Bundled files preserve the license header.
-- JetBrains Mono (first-cut video): SIL Open Font License included beside the font.
 - Public X excerpts retain source links and authors. They illustrate a verified
   run, are not owned by BlockRun, and are not part of the software license.
 - BlockRun, TypeSafe/Jev, X and Tally names identify tools used in the demo.
   This project does not claim partnership with TypeSafe, X or Tally.
-- `web/media/launch-music.mp3` and the video copy are an instrumental generated
+- `web/media/launch-music.mp3` are an instrumental generated
   specifically for this demo using MiniMax Music 2.5+ through BlockRun on
   2026-09-23 UTC. Current revision: upbeat light-tech electronica, requested
   128 BPM, crisp drums, bright synth arpeggios and bouncy bass, no vocals.

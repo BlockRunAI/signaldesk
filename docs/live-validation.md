@@ -79,10 +79,11 @@ remaining: a $0.32 increase from the preceding observation, rounded to cents.
 This is not a per-run settlement. The Tally run separately reports $0.002 Exa
 cost and estimated $0.002224 Jev cost; three other calls lack cost metadata.
 
-The local replay URL opens the saved result and draft without new paid requests:
+The original author's local replay URL opens the saved result and draft without new paid requests (not available on a fresh clone):
 `http://127.0.0.1:8787/?run=21db965b-a824-4121-bb35-8df2972ffee0&filter=review&draft=1`.
-Raw run files remain local and ignored. Video sources are in
-`videos/signaldesk-forms`; the video labels the real-data replay and measured times.
+Raw run files remain local and ignored. The portable walkthrough is `/demo`;
+it labels the historical replay and measured times. Video production is outside
+this application repository.
 
 ## Acceptance criteria for a publishable demo
 
@@ -130,7 +131,7 @@ customers, and must never be included in a marketing lead count.
 
 ## Local verification
 
-- 20 offline tests cover local credential storage, HTTP token/origin checks,
+- 26 offline tests cover local credential storage, HTTP token/origin checks,
   secret non-disclosure, normalization, stale/future data, deduplication, paging,
   provider errors, malformed model answers, source-quote validation, exclusions,
   missing credentials, CSV formula handling and redirect behavior.
@@ -146,8 +147,6 @@ Settings endpoints do not return secret values. Provider access is validated on
 live use; saving a key makes no paid call. Local HTTP tests cover CSRF token,
 Origin/Host restrictions and refusal to serve `.env`.
 
-The 32-second branded composition includes the approved 24-second workflow,
-a BlockRun × Jev opening, a bring-your-own-key closing, and original instrumental
-music. Browser playback was checked with an unmuted, advancing 32-second audio
-track. Video checks have no runtime/layout/contrast errors. The single-scene
-structure lint advisory is intentional.
+The no-key browser walkthrough illustrates the recorded workflow and labels it
+as a replay. The application repository does not include launch-film production
+sources or rendering tooling.

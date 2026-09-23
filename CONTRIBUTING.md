@@ -13,5 +13,9 @@ Use synthetic data in tests; keep live validation opt-in. Do not send outreach
 from tests or automatically retry paid requests. Preserve source provenance,
 exact quote checks and the distinction between a candidate and a customer.
 
-The animated demo is built from `web/flow.css`, `web/flow.js`, and
-`scripts/build_flow_demo.py`. Render instructions are in the video README.
+The no-key walkthrough lives in `web/demo.html`, `web/flow.css`, `web/flow.js`
+and `web/flow-player.js`. Keep its attribution and replay labeling intact.
+Launch-film production and rendering are outside this repository's scope.
+
+Read [architecture](docs/architecture.md) for module boundaries and supported deployment.
+CI pins its Actions, checks Python/JavaScript and scans full Git history with Gitleaks. Report vulnerabilities privately using [SECURITY.md](SECURITY.md).
