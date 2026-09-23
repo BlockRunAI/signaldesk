@@ -17,3 +17,5 @@ Use one persistent three-column workspace, smooth scrolling and staggered model
 results. This is an explicitly labeled replay of the verified Tally run, not live
 API latency. The English web demo and video share the same markup, styling and
 motion source. No additional paid search or outreach is required. The user requested original background music and a branded opening. Repository publication waits for their video approval.
+
+Palette revision: warm white #fffdf8, cobalt #2955e8, coral #ce4829, ink #18264a. Brighter blue replaces the former forest/sage greens; animation, data and soundtrack remain unchanged.

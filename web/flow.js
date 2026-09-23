@@ -4,7 +4,7 @@ const show=(s,t,d=.65)=>tl.fromTo(s,{opacity:0,y:14},{opacity:1,y:0,duration:d},
 show('.product',.25);show('.run-tag',.5);show('.column-title',.6);show('.feed-window',1);show('.engine',1.3);show('.output-shell',1.5);show('.waiting',1.6);
 tl.fromTo('.feed',{y:0},{y:-744,duration:6.4,ease:'sine.inOut'},1.5);
 tl.fromTo('.winner-outline',{opacity:0},{opacity:1,duration:.5},7.6);
-tl.fromTo('.post.match',{backgroundColor:'#ffffff'},{backgroundColor:'#e6f4dc',duration:.6},7.7);
+tl.fromTo('.post.match',{backgroundColor:'#ffffff'},{backgroundColor:getComputedStyle(document.documentElement).getPropertyValue('--blue-soft').trim(),duration:.6},7.7);
 show('.feed-foot',3);show('.classification',8.6);
 for(let i=0;i<5;i++){tl.fromTo('.one .packet',{x:0,opacity:0},{x:48,opacity:1,duration:.6,ease:'none'},4+i*.65);tl.to('.one .packet',{opacity:0,duration:.12},4.6+i*.65);}
 show('.checks',9.5);tl.fromTo('.fill.intent',{scaleX:0},{scaleX:.92,duration:1.1,ease:'power2.inOut'},9);
