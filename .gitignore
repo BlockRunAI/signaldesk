@@ -7,3 +7,11 @@ runs/
 data/
 *.log
 .DS_Store
+
+# Local video caches and delivery artifacts
+node_modules/
+videos/*/.hyperframes/
+videos/*/.media/
+videos/*/capture/
+videos/*/snapshots/
+videos/*/renders/

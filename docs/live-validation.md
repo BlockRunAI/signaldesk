@@ -11,7 +11,8 @@
 - Exa's supported domain filter / ordinary search returned HTTP 200 but zero
   posts for both tested travel-eSIM queries. BlockRun reported $0.010 per call.
   Empty search results still have a cost; success status does not imply usable data.
-- The currently available browser X search redirects to login.
+- Anonymous X browser search redirected to login; a later signed-in browser
+  session successfully verified the selected original post.
 
 ## Dedicated X provider
 
@@ -32,9 +33,9 @@ classification of truncated previews. A regression test covers that behavior.
 
 No post met the existing priority-review rule. Manual inspection found promotions,
 carrier support requests, phone-hardware requests and some travel-related needs
-requiring further research. Thresholds were not relaxed. Consequently the live
-positive draft path and a successful customer-discovery marketing example remain
-unverified; the synthetic contract check below is separate evidence only.
+requiring further research. Thresholds were not relaxed. At that stage the live
+positive draft path remained unverified. The later Tally run below validates that
+path without changing the thresholds; the synthetic check remains separate.
 
 After these calls, the X console showed $0.45 current spend and $4.55 remaining
 from the initial $5 credit purchase. This is an account-level UI observation,
@@ -43,7 +44,45 @@ Three Exa page reads reported $0.006 combined; Jev costs are estimates and chat
 costs still lack the header consumed by this app. Do not advertise a full cost.
 
 The local server now loads its ignored, owner-readable `.env` with X configured.
-No credentials or collected post datasets are committed to this repository.
+No credentials or bulk collected post datasets are committed. The video includes
+one deliberately selected screenshot of the verified public post and local UI.
+
+## Selected demo: form builders / Tally
+
+On 2026-09-23 at 00:05 UTC (September 22 Pacific), the official X workflow for
+https://tally.so returned 25 records, removed two duplicates and classified 23.
+The existing rules selected **one priority candidate**, with one additional
+research candidate and 21 promotional/unrelated posts. Jev classification took
+**1.691 seconds**; the full workflow took **8.08 seconds**. A reply draft was
+successfully generated. These are one run's measurements, not benchmarks.
+
+- Original: https://x.com/MisWiredKE/status/2101589197890977975
+- Created: 2026-09-20T08:28:05Z; verified in the signed-in browser.
+- Evidence: “What are the alternatives to Google Forms and Sheets?”
+- Context: collecting suggested nicknames for Pokémon game characters.
+- Tally fits the form-collection need; replacing Sheets requires more clarification.
+- Candidate status is not evidence of payment intent, conversion or a customer.
+- No reply or private message was sent. Tally is an illustrative product, not a partner.
+
+Query (recent seven days, maximum 25):
+
+```text
+(typeform OR jotform OR "form builder" OR "google forms") ("alternative" OR "recommend" OR "looking for" OR "expensive" OR "alternatives") -has:links lang:en
+```
+
+A bounded comparison of meeting transcription, form builders and invoicing found
+this form-builder request the clearest demonstration in the retrieved sample.
+This does not establish market-wide demand or comparative conversion rates.
+
+After the comparison and Tally run, the X console showed $0.77 spend and $4.23
+remaining: a $0.32 increase from the preceding observation, rounded to cents.
+This is not a per-run settlement. The Tally run separately reports $0.002 Exa
+cost and estimated $0.002224 Jev cost; three other calls lack cost metadata.
+
+The local replay URL opens the saved result and draft without new paid requests:
+`http://127.0.0.1:8787/?run=21db965b-a824-4121-bb35-8df2972ffee0&filter=review&draft=1`.
+Raw run files remain local and ignored. Video sources are in
+`videos/signaldesk-forms`; the video labels the real-data replay and measured times.
 
 ## Acceptance criteria for a publishable demo
 

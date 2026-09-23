@@ -1,7 +1,8 @@
 # SignalDesk demo: data sourcing and final short video
 
-Updated: 2026-09-22. Production plan; official X retrieval and classification now
-work with real posts. No finished video or validated priority-lead dataset yet.
+Updated: 2026-09-22 Pacific. The selected demo is Tally / form builders.
+Official X retrieval, Jev classification and the positive reply-draft path are
+validated with a real public post. See `live-validation.md` for measured results.
 
 ## Reference demo
 
@@ -46,19 +47,20 @@ Company facts come from the company website, not from a text model's memory.
 
 ## Final video deliverable
 
-Target: a 25–35 second MP4, based on actual SignalDesk UI and verified posts,
-plus an optional 6–8 second loop for X. HyperFrames product-showcase workflow.
-Proposed 16:9 main cut for readable desktop UI, with concise English captions for
-X; these are production defaults, subject to the user's later direction.
+A 30-second, 1920×1080 MP4 with Chinese on-screen text and no audio. Editable
+HyperFrames sources live in `videos/signaldesk-forms`; local output is
+`videos/signaldesk-forms/renders/signaldesk-demo.mp4` (ignored delivery artifact).
 
-1. 0–4s: “Someone is asking for what you sell.” Enter a real company URL.
-2. 4–10s: Show the actual collected posts, source and date window.
-3. 10–18s: Jev labels and filters; reveal measured count and classification time.
-4. 18–27s: Expand a genuine request, its product match and original-post evidence.
-5. 27–32s: Show the reply draft, acquisition cost separately from analysis cost,
-   and SignalDesk / BlockRun branding. No automatic outreach.
+1. 0–8s: Enter tally.so; ask who is looking for a form-tool alternative.
+2. 8–18s: Show 25 returned records → 23 unique posts → 1 priority candidate.
+   Separate 1.691-second Jev classification from the 8.08-second full workflow.
+3. 18–30s: Show the actual Google Forms alternative request, supporting evidence
+   and generated draft. Identify it as a candidate, with human review and no autosend.
 
-Do not film the current two promotional negative controls as a successful
-customer-discovery example. Positive model fixtures are explicitly synthetic
-tests and are not eligible for the marketing lead count. Production of the final
-customer demo depends on obtaining and validating the real source dataset.
+All product UI is a capture of the actual saved run, labeled as a real-data replay.
+The original post URL and timestamp remain available in the app. The MP4 is a
+presentation of the result, not a real-time screen recording. The synthetic
+positive fixtures and earlier negative controls are excluded from the video.
+
+Replaying the saved run or rendering this project causes no paid discovery calls.
+A fresh live run needs configured keys and may return different recent posts.

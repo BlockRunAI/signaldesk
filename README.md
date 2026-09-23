@@ -7,6 +7,15 @@ classification → evidence-linked opportunities and reply drafts. No messages a
 sent. Works with any business whose product facts and relevant public posts are
 available, not just AI companies.
 
+## Selected real demo
+
+**Form builders: find someone asking for a Google Forms alternative.** A live
+Tally run returned 25 records, classified 23 unique posts, and selected one
+candidate for review. Jev took 1.691 s; the complete workflow took 8.08 s.
+[Original request](https://x.com/MisWiredKE/status/2101589197890977975),
+[validation notes](docs/live-validation.md), and
+[30-second video project](videos/signaldesk-forms/README.md).
+
 ## Run locally
 
 Python 3.11+, no third-party Python packages required.
