@@ -21,3 +21,5 @@ motion source. No additional paid search or outreach is required. The user reque
 Palette revision: warm white #fffdf8, cobalt #2955e8, coral #ce4829, ink #18264a. Brighter blue replaces the former forest/sage greens; animation, data and soundtrack remain unchanged.
 
 Provider revision: BlockRun remains the demo brand and recommended model option, while the product also accepts a user-configured OpenAI-compatible model API. The end card says Model API, and the footer says Built with BlockRun. Works with your model API. X and official TypeSafe Jev still require their own credentials.
+
+Latest revision: opening BlockRun × Jev and SignalDesk titles use neutral black #111111. Replace the mellow music with upbeat, energetic light-tech electronica: requested 128 BPM, crisp drums, bouncing synth bass and bright arpeggios, instrumental only. Keep the approved 32-second visual timing and bright main-workflow palette.

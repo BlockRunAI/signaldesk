@@ -9,7 +9,7 @@ All source links point to actual public posts. Playback makes no provider calls.
 
 ```sh
 npm run check
-npm run render -- --fps 60 --quality delivery --output renders/signaldesk-launch-flexible-api.mp4
+npm run render -- --fps 60 --quality delivery --output renders/signaldesk-launch-energetic.mp4
 ```
 
 `index.html` is generated from the shared web replay assets. To rebuild after an
@@ -41,3 +41,5 @@ The optional HyperFrames CLI is pinned to 0.8.62 for reproducible rendering.
 Opening: BlockRun × Jev → SignalDesk. Closing: bring your own X, TypeSafe Jev and model API keys. The 24-second main sequence is retained between four-second brand bookends. See ../../THIRD_PARTY.md for music provenance.
 
 Current palette: warm white, cobalt blue and coral accents. Shared CSS tokens keep the browser replay and exported film consistent. The earlier green export is retained locally for comparison.
+
+Current opening: black BlockRun × Jev and SignalDesk typography. The main UI keeps the bright cobalt/warm-white palette. The soundtrack revision targets upbeat light-tech electronica with a more energetic groove.

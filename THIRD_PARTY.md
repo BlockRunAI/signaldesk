@@ -12,6 +12,11 @@ relicense service APIs, brands, public posts, fonts or bundled libraries.
   This project does not claim partnership with TypeSafe, X or Tally.
 - `web/media/launch-music.mp3` and the video copy are an instrumental generated
   specifically for this demo using MiniMax Music 2.5+ through BlockRun on
-  2026-09-23 UTC. The 116-second source was edited to 32 seconds, normalized
-  to approximately -19 LUFS, and faded in/out. It is a media asset, not MIT code.
-  Source: https://blockrun.ai/api/media/media/audios/2026/09/23/04bb0338-a2ce-4212-a922-593efcdd7b69.mp3
+  2026-09-23 UTC. Current revision: upbeat light-tech electronica, requested
+  128 BPM, crisp drums, bright synth arpeggios and bouncy bass, no vocals.
+  The 128-second source was edited to its first 32 seconds with a target of
+  -16 LUFS / -1.5 dBTP, a 0.15-second fade-in and a 1.7-second fade-out.
+  It is a media asset, not MIT code.
+  Source: https://blockrun.ai/api/media/media/audios/2026/09/23/08676dca-dd64-4fac-8a2d-b0bb1a77220d.mp3
+- Earlier mellow soundtrack (retained in prior commits and earlier local renders):
+  https://blockrun.ai/api/media/media/audios/2026/09/23/04bb0338-a2ce-4212-a922-593efcdd7b69.mp3

@@ -50,7 +50,7 @@ Company facts come from the company website, not from a text model's memory.
 User revision: English for X, with a more fluid end-to-end workflow similar to
 the reference. The current cut is `videos/signaldesk-flow-en`: 32 seconds,
 1920×1080, 60 fps, with instrumental background music. Local artifact:
-`videos/signaldesk-flow-en/renders/signaldesk-launch-flexible-api.mp4`.
+`videos/signaldesk-flow-en/renders/signaldesk-launch-energetic.mp4`.
 
 One persistent three-column canvas replaces the first cut's separate slides:
 rolling original-post excerpts → Jev API intent/fit/confidence → source evidence
