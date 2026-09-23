@@ -2,8 +2,9 @@
 import os
 from pathlib import Path
 import tempfile
+from .model_config import OPTIONS, model_options, validate_option
 
-KEYS = ('BLOCKRUN_API_KEY', 'TYPESAFE_API_KEY', 'X_BEARER_TOKEN', 'TWITTERAPI_KEY')
+KEYS = ('BLOCKRUN_API_KEY', 'TYPESAFE_API_KEY', 'X_BEARER_TOKEN', 'TWITTERAPI_KEY', 'LLM_API_KEY')
 
 def configured(environ=None):
     env = os.environ if environ is None else environ
@@ -11,9 +12,12 @@ def configured(environ=None):
 
 def update_settings(payload, env_path, environ=None):
     env = os.environ if environ is None else environ
-    if not isinstance(payload, dict) or set(payload) - {'keys', 'remove', 'persist'}:
+    if not isinstance(payload, dict) or set(payload) - {'keys', 'options', 'remove', 'persist'}:
         raise ValueError('Invalid settings fields')
     values = payload.get('keys', {})
+    options = payload.get('options', {})
+    if not isinstance(options, dict) or set(options) - set(OPTIONS):
+        raise ValueError('Unknown model configuration field')
     remove = payload.get('remove', [])
     persist = payload.get('persist', False)
     if not isinstance(values, dict) or set(values) - set(KEYS):
@@ -31,6 +35,12 @@ def update_settings(payload, env_path, environ=None):
         if not 8 <= len(value) <= 4096 or any(c.isspace() or ord(c) < 33 or ord(c) > 126 for c in value) or any(c in value for c in '\"\'\\'):
             raise ValueError('Credentials must be 8–4096 printable characters without spaces or quotes')
         changes[key] = value
+    for key, value in options.items():
+        changes[key] = validate_option(key, value)
+    if ('LLM_BASE_URL' in changes and env.get('LLM_API_KEY')
+            and changes['LLM_BASE_URL'] != env.get('LLM_BASE_URL', '').rstrip('/')
+            and 'LLM_API_KEY' not in changes and 'LLM_API_KEY' not in remove):
+        raise ValueError('Enter a new model API key when changing its Base URL')
     if set(changes) & set(remove):
         raise ValueError('Cannot save and remove the same credential')
     for key in remove:
@@ -57,4 +67,4 @@ def update_settings(payload, env_path, environ=None):
             env.pop(key, None)
         else:
             env[key] = value
-    return {'configured': configured(env), 'storage': 'local file and current session' if persist else 'current session only'}
+    return {'configured': configured(env), 'options': model_options(env), 'storage': 'local file and current session' if persist else 'current session only'}

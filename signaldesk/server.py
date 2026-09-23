@@ -9,6 +9,7 @@ import secrets
 import threading
 from urllib.parse import urlparse
 from .settings import configured, update_settings
+from .model_config import model_options
 from .core import safe_csv
 from .workflow import ROOT,execute
 
@@ -32,7 +33,7 @@ def serve(port=8787, env_path=None):
             files.update({key:(name,ctype) for key,name,ctype in [('/media/launch-music.mp3','media/launch-music.mp3','audio/mpeg'),('/demo','demo.html','text/html; charset=utf-8'),('/flow.css','flow.css','text/css; charset=utf-8'),('/flow.js','flow.js','text/javascript; charset=utf-8'),('/flow-player.js','flow-player.js','text/javascript; charset=utf-8'),('/vendor/gsap.min.js','vendor/gsap.min.js','text/javascript; charset=utf-8')]})
             if path in files:
                 name,ctype=files[path];return self.send(200,(ROOT/'web'/name).read_bytes(),ctype)
-            if path=='/api/config':return self.send(200,{'token':token,'configured':configured()})
+            if path=='/api/config':return self.send(200,{'token':token,'configured':configured(),'options':model_options()})
             if path=='/api/status':
                 with lock:snapshot=json.loads(json.dumps(state))
                 return self.send(200,snapshot)

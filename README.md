@@ -33,10 +33,18 @@ python3 -m signaldesk serve
 # http://127.0.0.1:8787
 ```
 
-Required: `BLOCKRUN_API_KEY` for company extraction and short text generation,
-`TYPESAFE_API_KEY` for **official TypeSafe Jev**. This version intentionally does
-not relabel BlockRun's separate OpenJev implementation as official Jev.
-The UI shows the actual returned model and per-stage request records.
+Choose a text model: **BlockRun** (recommended) or **your own OpenAI-compatible API**.
+The custom option uses `LLM_API_KEY`, `LLM_BASE_URL` and `LLM_MODEL` with
+`CHAT_PROVIDER=custom`. Models must support Chat Completions, `max_tokens`,
+`temperature=0`, and JSON-object output. Native APIs with a different request
+format are not interchangeable. Compatible-provider support is tested offline;
+a particular provider/model needs its own live validation.
+
+`TYPESAFE_API_KEY` is still required for **official TypeSafe Jev**. X search uses
+its own provider credential. BlockRun is optional: without its website extraction,
+enter a factual **Product context** and use X, TwitterAPI.io or imported posts.
+This version does not relabel BlockRun's separate OpenJev implementation as official Jev.
+The UI shows the actual Jev model and per-stage request records.
 
 Choose an X provider:
 
@@ -49,8 +57,9 @@ Choose an X provider:
 
 The app reads keys from `.env` or an explicitly supplied local file:
 `python3 -m signaldesk --env /path/to/local.env serve`.
-Keys stay on the backend and are only sent to fixed provider origins, with HTTP
-redirects disabled. It never reads browser cookies or X account passwords.
+Keys stay on the backend. The custom model key is sent only to its explicitly
+configured HTTPS Base URL; BlockRun, Jev and X credentials retain their fixed
+provider origins. HTTP redirects are disabled, and no cross-provider fallback occurs. It never reads browser cookies or X account passwords.
 
 ## First-run setup
 
@@ -60,13 +69,15 @@ redirects disabled. It never reads browser cookies or X account passwords.
 
 | Credential | Used for | Where to obtain it |
 |---|---|---|
-| BlockRun API key | Website extraction and reply drafting | https://user.blockrun.ai |
+| Model API key + Base URL + Model ID | Product understanding and reply drafting; select My own API | Your chosen OpenAI-compatible provider |
+| BlockRun API key | Recommended model option; optional website extraction / Exa search | https://user.blockrun.ai |
 | TypeSafe Jev API key | Official Jev classification | https://typesafe.ai |
 | X API Bearer Token | Original public posts, recent seven days | https://console.x.com |
 | TwitterAPI.io key | Optional alternative X provider | https://twitterapi.io |
 
 Keep **Save locally in .env** unchecked for a session-only setup, or check it to
 persist in an owner-readable file (0600). Blank fields preserve existing keys;
+changing a saved custom Base URL requires entering the destination's model API key again;
 existing secrets are never sent back to the browser. Settings cannot change during
 a run. The server must remain local. Saving validates input and configuration;
 provider credentials/access are checked when a live request is made.
@@ -81,6 +92,20 @@ free of API calls. Provider failures appear as actionable errors with no automat
 paid retry. Data and run history stay on this machine.
 
 ## Command line
+
+Example custom model configuration (the Base URL includes the API prefix):
+
+```dotenv
+CHAT_PROVIDER=custom
+LLM_API_KEY=your-provider-key
+LLM_BASE_URL=https://api.your-provider.com/v1
+LLM_MODEL=your-model-id
+TYPESAFE_API_KEY=your-jev-key
+X_BEARER_TOKEN=your-x-token
+```
+
+With this setup, supply `--brief` (or Product context in the UI). No BlockRun
+key is needed. Exa website extraction and Exa search remain optional BlockRun services.
 
 ```sh
 python3 -m signaldesk run --url https://www.airalo.com --provider twitterapi \
@@ -103,7 +128,7 @@ Imports are not independently authenticated. Review source links before outreach
 ## Pipeline
 
 1. Extract company website text through Exa, or use the supplied product brief.
-2. A BlockRun text model extracts capabilities, limitations and search phrases.
+2. Your selected text model extracts capabilities, limitations and search phrases.
 3. Search up to four queries, two pages each, with a maximum of 100 eligible
    posts. Explicit query overrides are supported. Search collection can stop
    short of the requested count; the UI always displays actual counts.

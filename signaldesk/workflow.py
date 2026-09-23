@@ -5,6 +5,7 @@ import time
 import uuid
 from .core import normalize,now,questions,rank,public_url
 from .providers import API,profile,search
+from .model_config import model_route
 
 ROOT=Path(__file__).resolve().parent.parent
 
@@ -18,7 +19,13 @@ def execute(options, callback=lambda r:None, api=None):
     if provider not in ['twitterapi','x','exa','import']:raise ValueError('Invalid data provider')
     rows=options.get('posts',[])
     if provider=='import' and (not isinstance(rows,list) or not 1<=len(rows)<=500):raise ValueError('Import 1–500 posts as a JSON array')
-    required=['BLOCKRUN_API_KEY','TYPESAFE_API_KEY']+({'twitterapi':['TWITTERAPI_KEY'],'x':['X_BEARER_TOKEN']}.get(provider,[]))
+    model_route()  # Validate the selected route before any paid provider request.
+    brief=options.get('brief','')
+    if not isinstance(brief,str):raise ValueError('Product context must be text')
+    brief=brief.strip()
+    if not brief and not os.getenv('BLOCKRUN_API_KEY'):
+        raise ValueError('Add product context, or configure optional BlockRun website extraction')
+    required=['TYPESAFE_API_KEY']+(['BLOCKRUN_API_KEY'] if provider=='exa' else [])+({'twitterapi':['TWITTERAPI_KEY'],'x':['X_BEARER_TOKEN']}.get(provider,[]))
     missing=[key for key in required if not os.getenv(key)]
     if missing:raise ValueError('Missing configuration: '+', '.join(missing))
     run={'id':str(uuid.uuid4()),'started_at':now().isoformat(),'status':'running','stage':'company','provider':provider,
@@ -36,7 +43,7 @@ def execute(options, callback=lambda r:None, api=None):
         callback(json.loads(json.dumps(run)))
     try:
         save('company','Reading the product and its documented capabilities')
-        company=profile(api,url,options.get('brief',''));run['company']=company
+        company=profile(api,url,brief);run['company']=company
         save('search','Collecting source posts')
         if provider!='import':rows,traces=search(api,provider,company,days,limit,options.get('queries'));run['searches']=traces
         else:run['searches']=[];run['warnings'].append('Imported text is supplied evidence, not independently verified by SignalDesk. Review the original links.')
