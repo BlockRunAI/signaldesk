@@ -14,7 +14,11 @@ Tally run returned 25 records, classified 23 unique posts, and selected one
 candidate for review. Jev took 1.691 s; the complete workflow took 8.08 s.
 [Original request](https://x.com/MisWiredKE/status/2101589197890977975),
 [validation notes](docs/live-validation.md), and
-[30-second video project](videos/signaldesk-forms/README.md).
+[English continuous video project](videos/signaldesk-flow-en/README.md).
+
+Open [the animated workflow](http://127.0.0.1:8787/demo) for a 24-second,
+three-column replay with scrolling posts, Jev scores and an evidence-linked
+reply draft. The app UI is English. Replay never starts a paid run.
 
 ## Run locally
 

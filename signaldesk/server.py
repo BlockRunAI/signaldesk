@@ -27,6 +27,7 @@ def serve(port=8787):
             if not self.valid_host():return self.send(403,{'error':'Invalid host'})
             path=urlparse(self.path).path
             files={'/':('index.html','text/html; charset=utf-8'),'/app.js':('app.js','text/javascript; charset=utf-8'),'/style.css':('style.css','text/css; charset=utf-8')}
+            files.update({key:(name,ctype) for key,name,ctype in [('/demo','demo.html','text/html; charset=utf-8'),('/flow.css','flow.css','text/css; charset=utf-8'),('/flow.js','flow.js','text/javascript; charset=utf-8'),('/flow-player.js','flow-player.js','text/javascript; charset=utf-8'),('/vendor/gsap.min.js','vendor/gsap.min.js','text/javascript; charset=utf-8')]})
             if path in files:
                 name,ctype=files[path];return self.send(200,(ROOT/'web'/name).read_bytes(),ctype)
             if path=='/api/config':return self.send(200,{'token':token,'configured':{k:bool(os.getenv(k)) for k in ['BLOCKRUN_API_KEY','TYPESAFE_API_KEY','TWITTERAPI_KEY','X_BEARER_TOKEN']}})
